@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дыхание Алтая — авторские туры</title>
+<meta name="description" content="Авторский тур на Алтай до 7 дней в мини-группе 8–12 человек. Проживание, трансферы, гид, фото, лёгкий трекинг, баня и местная кухня. 95 000 ₽.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300..600;1,7..72,300..500&family=Onest:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mist:#EDF1EE;
+  --snow:#FAFBFA;
+  --ink:#13262B;
+  --deep:#0B1A1E;
+  --katun:#1E8C8E;
+  --katun-d:#14696B;
+  --larch:#D49A2A;
+  --stone:#5B6B69;
+  --line:#CFD8D4;
+  --serif:'Literata',Georgia,serif;
+  --sans:'Onest',system-ui,sans-serif;
+  --gut:clamp(20px,5vw,72px);
+  --max:1240px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--sans);font-size:17px;line-height:1.6;color:var(--ink);background:var(--mist);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--larch);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+h1,h2,h3{font-family:var(--serif);font-weight:350;line-height:1.08;letter-spacing:-.015em}
+h2{font-size:clamp(2rem,4.4vw,3.4rem);max-width:18ch}
+h3{font-size:1.35rem;line-height:1.2}
+p{max-width:62ch}
+section{padding:clamp(72px,10vw,140px) 0}
+
+/* кнопки */
+.btn{display:inline-block;font:500 1rem/1 var(--sans);padding:18px 30px;border-radius:999px;text-decoration:none;background:var(--larch);color:var(--deep);border:0;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:#E5AE45;transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* фото-заглушка: если файла нет — виден градиент */
+.ph{position:relative;overflow:hidden;background:var(--fb,linear-gradient(160deg,#2c5d63,#0f2a30))}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* шапка */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,box-shadow .3s}
+header.solid{background:rgba(237,241,238,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{font-family:var(--serif);font-size:1.3rem;font-weight:400;text-decoration:none;color:#fff;transition:color .3s}
+header.solid .logo{color:var(--ink)}
+nav{display:flex;gap:30px;align-items:center}
+nav a{font-size:.95rem;text-decoration:none;color:#fff;opacity:.9;transition:color .3s}
+header.solid nav a{color:var(--ink)}
+nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:5px}
+nav .btn{padding:12px 22px;font-size:.92rem;color:var(--deep)}
+header.solid nav .btn{color:var(--deep)}
+@media(max-width:860px){nav a:not(.btn){display:none}}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;padding:0;--fb:linear-gradient(180deg,#5f8f99 0%,#2b5a63 45%,#0f2a30 100%)}
+.hero .ph{position:absolute;inset:0}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,30,.35) 0%,rgba(11,26,30,0) 30%,rgba(11,26,30,.78) 100%)}
+.hero .wrap{position:relative;z-index:2;width:100%;padding-top:140px;padding-bottom:clamp(28px,4vw,56px)}
+.hero h1{font-size:clamp(3.2rem,10.5vw,9rem);font-weight:300;letter-spacing:-.03em;line-height:.95}
+.hero .lead{font-size:clamp(1.1rem,2vw,1.4rem);margin-top:24px;max-width:36ch;font-weight:300}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
+.facts{display:flex;flex-wrap:wrap;gap:0;margin-top:clamp(36px,6vw,72px);border-top:1px solid rgba(255,255,255,.35)}
+.facts div{flex:1 1 180px;padding:20px 24px 0 0}
+.facts b{display:block;font:400 clamp(1.5rem,3vw,2.2rem)/1.1 var(--serif)}
+.facts span{font-size:.92rem;opacity:.85}
+
+/* дыхание: единственный «живой» момент страницы */
+.breath{position:absolute;z-index:2;right:var(--gut);top:50%;transform:translateY(-62%);width:clamp(120px,16vw,200px);aspect-ratio:1;display:grid;place-items:center}
+.breath i{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,255,255,.75);animation:inhale 10s ease-in-out infinite}
+.breath i:nth-child(2){inset:14%;border-color:rgba(255,255,255,.4);animation-delay:.35s}
+.breath span{position:absolute;font:italic 300 1.25rem var(--serif);opacity:0;animation:word 10s ease-in-out infinite}
+.breath span+span{animation-delay:5s}
+@keyframes inhale{0%,100%{transform:scale(.7)}50%{transform:scale(1)}}
+@keyframes word{0%,100%{opacity:0}10%,40%{opacity:1}50%{opacity:0}}
+@media(max-width:700px){.breath{top:96px;transform:none;width:96px}}
+@media(prefers-reduced-motion:reduce){.breath i,.breath span{animation:none}.breath span:first-of-type{opacity:1}html{scroll-behavior:auto}}
+
+/* знакомо */
+.intro .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.intro h2{max-width:14ch}
+.intro p+p{margin-top:1.1em}
+.intro .big{font:350 clamp(1.3rem,2.2vw,1.7rem)/1.4 var(--serif);max-width:30ch;color:var(--katun-d)}
+@media(max-width:820px){.intro .grid{grid-template-columns:1fr}}
+
+/* что входит: мозаика */
+.incl{background:var(--snow)}
+.incl header.head{position:static;background:none;box-shadow:none}
+.mosaic{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:48px}
+.tile{position:relative;border-radius:18px;overflow:hidden;color:#fff;min-height:240px;display:flex;align-items:flex-end}
+.tile .ph{position:absolute;inset:0}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,30,0) 35%,rgba(11,26,30,.82) 100%)}
+.tile .txt{position:relative;z-index:2;padding:24px 26px}
+.tile p{font-size:.98rem;margin-top:6px;opacity:.92;max-width:40ch}
+.t-stay{grid-column:span 7;grid-row:span 2}
+.t-trek{grid-column:span 5}
+.t-banya{grid-column:span 5}
+.t-food{grid-column:span 6;min-height:300px}
+.t-more{grid-column:span 6;background:var(--ink);color:#fff;padding:30px;display:block;border-radius:18px}
+.t-more::after{display:none}
+.t-more ul{list-style:none;display:grid;gap:18px;margin-top:6px}
+.t-more li{display:grid;grid-template-columns:130px 1fr;gap:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.18)}
+.t-more li:first-child{border:0;padding-top:0}
+.t-more strong{font:400 1.2rem/1.2 var(--serif)}
+.t-more span{opacity:.82;font-size:.98rem}
+@media(max-width:860px){.t-stay,.t-trek,.t-banya,.t-food,.t-more{grid-column:1/-1;grid-row:auto}.t-more li{grid-template-columns:1fr;gap:4px}}
+
+/* программа */
+.prog .grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px)}
+.prog .side{position:sticky;top:110px;align-self:start}
+.prog .side .ph{aspect-ratio:4/5;border-radius:18px;margin-top:32px;--fb:linear-gradient(160deg,#3d7f86,#14363c)}
+.days{list-style:none;counter-reset:d}
+.days li{counter-increment:d;display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line)}
+.days li:last-child{border-bottom:1px solid var(--line)}
+.days li::before{content:counter(d);font:300 2.6rem/1 var(--serif);color:var(--katun)}
+.days h3{margin-bottom:6px}
+.days p{color:var(--stone);font-size:1rem}
+.note{font-size:.9rem;color:var(--stone);margin-top:22px;max-width:50ch}
+@media(max-width:860px){.prog .grid{grid-template-columns:1fr}.prog .side{position:static}.prog .side .ph{aspect-ratio:16/9}}
+
+/* формат: фото на всю ширину */
+.format{position:relative;color:#fff;padding:0;min-height:78vh;display:flex;align-items:center;--fb:linear-gradient(120deg,#8a6a2b,#2a3a30 60%,#0d2024)}
+.format .ph{position:absolute;inset:0}
+.format::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,26,30,.82) 0%,rgba(11,26,30,.35) 70%,rgba(11,26,30,.1) 100%)}
+.format .wrap{position:relative;z-index:2;padding-top:90px;padding-bottom:90px}
+.format h2{max-width:15ch}
+.format p{margin-top:22px;font-size:1.12rem;font-weight:300}
+.nums{display:flex;gap:clamp(24px,5vw,64px);flex-wrap:wrap;margin-top:44px}
+.nums b{display:block;font:300 clamp(2.4rem,5vw,4rem)/1 var(--serif)}
+.nums span{font-size:.95rem;opacity:.85}
+
+/* для кого */
+.fit .cols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,72px);margin-top:48px}
+.fit h3{padding-bottom:14px;border-bottom:2px solid var(--katun);margin-bottom:6px}
+.fit .no h3{border-color:var(--stone)}
+.fit ul{list-style:none}
+.fit li{padding:16px 0;border-bottom:1px solid var(--line)}
+@media(max-width:760px){.fit .cols{grid-template-columns:1fr}}
+
+/* цена */
+.price{background:var(--ink);color:#fff}
+.price .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.price .sum{font:300 clamp(3.6rem,9vw,7rem)/1 var(--serif);letter-spacing:-.03em}
+.price .sum small{font-size:.4em;margin-left:.15em;color:var(--larch)}
+.price .per{opacity:.8;margin-top:10px}
+.price ul{list-style:none;margin-top:6px}
+.price li{padding:14px 0 14px 34px;border-bottom:1px solid rgba(255,255,255,.16);position:relative}
+.price li::before{content:"";position:absolute;left:4px;top:1.15em;width:12px;height:7px;border-left:2px solid var(--larch);border-bottom:2px solid var(--larch);transform:rotate(-45deg)}
+.price .btn{margin-top:36px}
+.price .out{font-size:.92rem;opacity:.7;margin-top:22px}
+@media(max-width:820px){.price .grid{grid-template-columns:1fr}}
+
+/* faq */
+.faq .list{margin-top:44px;max-width:820px}
+details{border-top:1px solid var(--line)}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;padding:22px 40px 22px 0;font:400 1.25rem/1.3 var(--serif);position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";position:absolute;right:4px;top:18px;font:300 1.8rem var(--sans);color:var(--katun);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 40px 24px 0;color:var(--stone)}
+
+/* заявка */
+.apply{background:var(--snow);padding:0}
+.apply .grid{display:grid;grid-template-columns:1fr 1fr}
+.apply .ph{min-height:560px;--fb:linear-gradient(160deg,#c48a2c,#4a5a3a 60%,#14303a)}
+.apply .formside{padding:clamp(56px,8vw,110px) var(--gut);max-width:640px}
+.apply form{display:grid;gap:18px;margin-top:34px}
+label{display:grid;gap:6px;font-size:.92rem;color:var(--stone)}
+input,select,textarea{font:400 1rem var(--sans);padding:15px 16px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--katun);box-shadow:0 0 0 3px rgba(30,140,142,.2)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.apply .btn{justify-self:start;margin-top:6px}
+.ok{display:none;margin-top:24px;padding:20px 22px;border-radius:14px;background:#E3F1EE;color:var(--katun-d)}
+.ok.on{display:block}
+.fine{font-size:.85rem;color:var(--stone)}
+@media(max-width:860px){.apply .grid{grid-template-columns:1fr}.apply .ph{min-height:260px;order:2}.row{grid-template-columns:1fr}}
+
+footer{background:var(--deep);color:#fff;padding:56px 0}
+footer .wrap{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start}
+footer .logo{color:#fff}
+footer p{opacity:.7;font-size:.92rem}
+footer .c{display:grid;gap:6px}
+footer .credits{flex-basis:100%;max-width:none;font-size:.8rem;opacity:.55;border-top:1px solid rgba(255,255,255,.15);padding-top:20px}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="logo" href="#hero">Дыхание Алтая</a>
+    <nav aria-label="Основное меню">
+      <a href="#included">Что входит</a>
+      <a href="#program">Программа</a>
+      <a href="#price">Стоимость</a>
+      <a href="#faq">Вопросы</a>
+      <a class="btn" href="#apply">Оставить заявку</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- Первый экран -->
+<section class="hero" id="hero">
+  <figure class="ph"><img src="img/hero.jpg" alt="Горы и долина Алтая на рассвете" onerror="this.remove()"></figure>
+  <div class="breath" aria-hidden="true"><i></i><i></i><span>вдох</span><span>выдох</span></div>
+  <div class="wrap">
+    <h1>Дыхание Алтая</h1>
+    <p class="lead">Авторский тур на неделю в мини-группе. Горы, река и тишина, в которой наконец слышно себя.</p>
+    <div class="cta">
+      <a class="btn" href="#apply">Выбрать даты</a>
+      <a class="btn ghost" href="#program">Смотреть программу</a>
+    </div>
+    <div class="facts">
+      <div><b>до 7 дней</b><span>в пути без спешки</span></div>
+      <div><b>8–12 человек</b><span>в одной группе</span></div>
+      <div><b>95 000 ₽</b><span>всё включено в программу</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Знакомо -->
+<section class="intro" id="about">
+  <div class="wrap grid">
+    <div>
+      <h2>Город устаёт раньше, чем отпуск начинается</h2>
+    </div>
+    <div>
+      <p class="big">Мы собрали поездку, где не нужно ничего планировать и никуда бежать.</p>
+      <p style="margin-top:22px">Вы живёте в большом городе, много работаете и давно не оставались наедине с природой дольше выходных. На Алтае мы ходим короткими тропами, греемся в бане, едим то, что растёт и готовится здесь, и возвращаемся с ощущением, что отдохнули по-настоящему.</p>
+      <p>Маршрут, жильё, дорогу и питание берём на себя. Вам остаётся приехать.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Что входит -->
+<section class="incl" id="included">
+  <div class="wrap">
+    <h2>Что входит в тур</h2>
+    <div class="mosaic">
+      <article class="tile t-stay">
+        <figure class="ph" style="--fb:linear-gradient(160deg,#4a6b4c,#1b3330)"><img src="img/stay.jpg" alt="Деревянный дом среди алтайских гор" loading="lazy" onerror="this.remove()"></figure>
+        <div class="txt"><h3>Проживание</h3><p>Тёплые деревянные дома и эко-базы с видом на горы. Небольшие комнаты на двоих или одного.</p></div>
+      </article>
+      <article class="tile t-trek">
+        <figure class="ph" style="--fb:linear-gradient(160deg,#6d8a6a,#233b36)"><img src="img/trek.jpg" alt="Группа идёт по горной тропе" loading="lazy" onerror="this.remove()"></figure>
+        <div class="txt"><h3>Лёгкий трекинг</h3><p>3–4 часа в день по понятным тропам. Подготовка не нужна.</p></div>
+      </article>
+      <article class="tile t-banya">
+        <figure class="ph" style="--fb:linear-gradient(160deg,#8a5a34,#2a1d16)"><img src="img/banya.jpg" alt="Русская баня с вениками" loading="lazy" onerror="this.remove()"></figure>
+        <div class="txt"><h3>Баня</h3><p>Парная на дровах, веники из трав и чай после.</p></div>
+      </article>
+      <article class="tile t-food">
+        <figure class="ph" style="--fb:linear-gradient(150deg,#1E8C8E,#0f4a4d)"><img src="img/food.jpg" alt="Стол с алтайской кухней: мёд, хлеб, травяной чай" loading="lazy" onerror="this.remove()"></figure>
+        <div class="txt"><h3>Местная кухня</h3><p>Завтраки и ужины с мёдом, травами, рыбой и ягодами от местных хозяев.</p></div>
+      </article>
+      <article class="tile t-more">
+        <ul>
+          <li><strong>Трансферы</strong><span>Встретим в Горно-Алтайске и привезём обратно. Все переезды на комфортных автомобилях.</span></li>
+          <li><strong>Гид</strong><span>Человек, который знает маршруты, погоду и истории этих мест, и идёт с вами всё время.</span></li>
+          <li><strong>Фото</strong><span>Фотограф снимает группу и пейзажи. Вы получаете готовые кадры после поездки.</span></li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Программа -->
+<section class="prog" id="program">
+  <div class="wrap grid">
+    <div class="side">
+      <h2>Неделя по дням</h2>
+      <p style="margin-top:18px;color:var(--stone)">Темп мягкий: утром дорога или прогулка, днём отдых, вечером баня и ужин.</p>
+      <figure class="ph"><img src="img/lake.jpg" alt="Горное озеро на Алтае" loading="lazy" onerror="this.remove()"></figure>
+    </div>
+    <div>
+      <ol class="days">
+        <li><div><h3>Встреча и первый вечер</h3><p>Встречаем в Горно-Алтайске, едем в Чемал, заселяемся. Знакомимся за ужином.</p></div></li>
+        <li><div><h3>Катунь</h3><p>Бирюзовая река, остров Патмос, неспешная прогулка по берегу. Вечером баня.</p></div></li>
+        <li><div><h3>Чуйский тракт</h3><p>Дорога через перевалы и Курайскую степь со снежными вершинами на горизонте. Остановки для фото.</p></div></li>
+        <li><div><h3>Горное озеро</h3><p>Лёгкий трек на 8–10 км, обед у воды, свободное время для тишины.</p></div></li>
+        <li><div><h3>День для себя</h3><p>Мастер-класс по местной кухне, прогулки или отдых. Решаете вы.</p></div></li>
+        <li><div><h3>Баня и чаепитие</h3><p>Банный день на берегу реки, чай из алтайских трав, вечер у костра.</p></div></li>
+        <li><div><h3>Дорога домой</h3><p>Завтрак, трансфер в Горно-Алтайск к самолёту или поезду.</p></div></li>
+      </ol>
+      <p class="note">Это примерный маршрут. Точную программу под сезон и группу мы подтверждаем при бронировании.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Формат -->
+<section class="format" id="format">
+  <figure class="ph"><img src="img/autumn.jpg" alt="Золотая лиственница и тайга Алтая" loading="lazy" onerror="this.remove()"></figure>
+  <div class="wrap">
+    <h2>Мини-группа, где вас знают по именам</h2>
+    <p>Восемь–двенадцать человек. Столько, чтобы было с кем поговорить, и достаточно мало, чтобы никто не терялся и не шёл в хвосте толпы.</p>
+    <div class="nums">
+      <div><b>8–12</b><span>человек в группе</span></div>
+      <div><b>1</b><span>гид на всём пути</span></div>
+      <div><b>до 7</b><span>дней на Алтае</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Для кого -->
+<section class="fit">
+  <div class="wrap">
+    <h2>Для кого этот тур</h2>
+    <p style="margin-top:18px;color:var(--stone)">Мы собираем людей 27–45 лет из больших городов, которым нужна перезагрузка.</p>
+    <div class="cols">
+      <div class="yes">
+        <h3>Вам подойдёт, если</h3>
+        <ul>
+          <li>вы устали от темпа города и хотите выключить уведомления</li>
+          <li>вам хочется природы, но без палаток и тяжёлых рюкзаков</li>
+          <li>вы едете один или вдвоём и рады новым людям рядом</li>
+          <li>вы готовы ходить пешком 3–4 часа в день</li>
+        </ul>
+      </div>
+      <div class="no">
+        <h3>Лучше выбрать другой тур, если</h3>
+        <ul>
+          <li>вы ищете сложные восхождения и экстремальные маршруты</li>
+          <li>вам нужен отель с сервисом «всё включено» и бассейном</li>
+          <li>вы хотите ехать быстро и увидеть как можно больше за день</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Цена -->
+<section class="price" id="price">
+  <div class="wrap grid">
+    <div>
+      <h2>Стоимость тура</h2>
+      <div class="sum" style="margin-top:28px">95 000<small>₽</small></div>
+      <p class="per">с человека за программу до 7 дней</p>
+      <a class="btn" href="#apply">Забронировать место</a>
+      <p class="out">В стоимость не входит дорога до Горно-Алтайска и обратно, личные расходы.</p>
+    </div>
+    <div>
+      <ul>
+        <li>Проживание на всё время тура</li>
+        <li>Трансферы от встречи до проводов</li>
+        <li>Сопровождение гида</li>
+        <li>Фотосъёмка группы и пейзажей</li>
+        <li>Лёгкие трекинговые маршруты</li>
+        <li>Баня на дровах</li>
+        <li>Завтраки, ужины и местная кухня</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2>Частые вопросы</h2>
+    <div class="list">
+      <details><summary>Нужна ли физическая подготовка?</summary><p>Нет. Маршруты рассчитаны на обычного городского человека: 3–4 часа в день по спокойным тропам, с остановками. Если захочется отдохнуть, можно остаться на базе.</p></details>
+      <details><summary>Что взять с собой?</summary><p>Удобную обувь для трекинга, непромокаемую куртку, тёплый слой и личные вещи. Полный список вышлем после бронирования.</p></details>
+      <details><summary>Можно ли ехать одному?</summary><p>Да, большинство участников приезжают одни или вдвоём. Группа небольшая, и знакомятся быстро.</p></details>
+      <details><summary>Как оплатить и что с отменой?</summary><p>Бронируете место предоплатой, остаток вносите до выезда. Условия возврата пришлём вместе с договором.</p></details>
+      <details><summary>Когда ближайшие выезды?</summary><p>Оставьте заявку с желаемым месяцем, и мы вернёмся с подходящими датами и свободными местами.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- Заявка -->
+<section class="apply" id="apply">
+  <div class="grid">
+    <div class="formside">
+      <h2>Оставьте заявку</h2>
+      <p style="margin-top:16px;color:var(--stone)">Напишем в течение дня, расскажем про даты и ответим на вопросы. Оплачивать ничего не нужно.</p>
+      <form id="lead" novalidate>
+        <label>Ваше имя<input name="name" autocomplete="name" required></label>
+        <div class="row">
+          <label>Телефон или Telegram<input name="contact" autocomplete="tel" required></label>
+          <label>Сколько человек<select name="people"><option>1</option><option selected>2</option><option>3</option><option>4 и больше</option></select></label>
+        </div>
+        <label>Желаемый месяц поездки<input name="month" placeholder="Например, июнь"></label>
+        <label>Вопрос или пожелание<textarea name="msg" rows="3"></textarea></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <p class="fine">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+      </form>
+      <div class="ok" id="ok" role="status">Заявка отправлена. Мы свяжемся с вами в течение дня.</div>
+    </div>
+    <figure class="ph"><img src="img/chuya.jpg" alt="Курайская степь и Северо-Чуйский хребет" loading="lazy" onerror="this.remove()"></figure>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#hero">Дыхание Алтая</a>
+      <p style="margin-top:8px">Авторские туры на Алтай</p>
+    </div>
+    <div class="c">
+      <p>Телефон: [добавить номер]</p>
+      <p>Telegram: [добавить ник]</p>
+      <p>Почта: [добавить адрес]</p>
+    </div>
+    <p class="credits">Фото: Victor Gleim (Среднее Мультинское озеро), Ludvig14 (Северо-Чуйский хребет),
+    Arseniy333 (поход), Maksim Teltsov (баня, Чемальский район), BeerFAAN (дом на реке),
+    Dukvink (озеро Аккем), Discoverynn (осень, Курайская степь), Wikimedia Commons, лицензии
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>,
+    <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>,
+    <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>. Изображения уменьшены и сжаты.</p>
+  </div>
+</footer>
+
+<script>
+  // шапка становится плотной после первого экрана
+  var h=document.querySelector('header');
+  function s(){h.classList.toggle('solid',window.scrollY>60)}
+  s();addEventListener('scroll',s,{passive:true});
+
+  // отправка заявки; сюда вставить адрес вебхука n8n
+  var WEBHOOK_URL='';
+  document.getElementById('lead').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target;
+    if(!f.name.value.trim()||!f.contact.value.trim()){
+      (f.name.value.trim()?f.contact:f.name).focus();return;
+    }
+    var data=Object.fromEntries(new FormData(f).entries());
+    var done=function(){f.style.display='none';document.getElementById('ok').classList.add('on')};
+    if(!WEBHOOK_URL){done();return}
+    fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(done).catch(function(){alert('Не удалось отправить. Напишите нам в Telegram.')});
+  });
+</script>
+</body>
+</html>
