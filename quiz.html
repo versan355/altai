@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Подберите свой тур на Алтай</title>
+<meta name="description" content="Пять вопросов, и мы подберём программу авторского тура «Дыхание Алтая» именно под вас.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,300..500&family=Onest:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{--mist:#EDF1EE;--snow:#FAFBFA;--ink:#13262B;--deep:#0B1A1E;--katun:#1E8C8E;--katun-d:#14696B;--larch:#D49A2A;--stone:#5B6B69;--line:#CFD8D4;--serif:'Literata',Georgia,serif;--sans:'Onest',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);font-size:17px;line-height:1.55;color:var(--ink);background:var(--mist);min-height:100svh;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--larch);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:350;line-height:1.12;letter-spacing:-.015em}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,5vw,56px)}
+.top a{font-family:var(--serif);font-size:1.2rem;text-decoration:none;color:var(--ink)}
+.top small{color:var(--stone);font-size:.9rem}
+.bar{height:5px;background:var(--line)}
+.bar i{display:block;height:100%;width:0;background:var(--katun);transition:width .4s}
+main{max-width:960px;margin:0 auto;padding:clamp(28px,5vw,64px) clamp(20px,5vw,56px) 80px}
+.step{display:none}.step.on{display:block}
+.q{font-size:clamp(1.7rem,4vw,2.6rem);max-width:20ch}
+.hint{color:var(--stone);margin-top:10px}
+.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:32px}
+.opt{all:unset;box-sizing:border-box;cursor:pointer;background:var(--snow);border-radius:18px;overflow:hidden;box-shadow:inset 0 0 0 1.5px var(--line);transition:transform .2s,box-shadow .2s;display:block}
+.opt:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 2px var(--katun)}
+.opt:focus-visible{outline:3px solid var(--larch)}
+.opt .m{position:relative;aspect-ratio:4/3;overflow:hidden}
+.opt svg,.opt .m img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.opt span{display:block;padding:14px 16px 18px;font-weight:500}
+.opt em{display:block;font-style:normal;font-weight:300;font-size:.9rem;color:var(--stone);margin-top:2px}
+.back{margin-top:28px;background:none;border:0;color:var(--stone);font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.res{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:start}
+.res .pic{border-radius:20px;aspect-ratio:4/3;background:#2c5d63 center/cover}
+.tag{display:inline-block;background:#DCEBE7;color:var(--katun-d);border-radius:999px;padding:6px 14px;font-size:.9rem;margin-bottom:14px}
+.res h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+.res p{margin-top:14px;color:var(--stone)}
+.res ul{margin:18px 0 0;padding:0;list-style:none}
+.res li{padding:11px 0 11px 30px;border-top:1px solid var(--line);position:relative}
+.res li::before{content:"";position:absolute;left:3px;top:1.05em;width:12px;height:7px;border-left:2px solid var(--katun);border-bottom:2px solid var(--katun);transform:rotate(-45deg)}
+.pr{margin-top:20px;font:300 2.2rem var(--serif)}
+.pr small{font:300 .95rem var(--sans);color:var(--stone);margin-left:8px}
+form{background:var(--snow);border-radius:20px;padding:26px;display:grid;gap:14px;margin-top:30px;box-shadow:inset 0 0 0 1.5px var(--line)}
+form h3{font-size:1.4rem}
+label{display:grid;gap:6px;font-size:.92rem;color:var(--stone)}
+input{font:400 1rem var(--sans);padding:15px 16px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);width:100%}
+input:focus{outline:none;border-color:var(--katun);box-shadow:0 0 0 3px rgba(30,140,142,.2)}
+.btn{font:500 1rem/1 var(--sans);padding:18px 30px;border-radius:999px;background:var(--larch);color:var(--deep);border:0;cursor:pointer;justify-self:start}
+.btn:hover{background:#E5AE45}
+.fine{font-size:.85rem;color:var(--stone)}
+.credits{max-width:960px;margin:0 auto;padding:0 clamp(20px,5vw,56px) 40px;font-size:.78rem;color:var(--stone);opacity:.8}
+.credits a{color:inherit}
+.done{display:none;padding:22px;border-radius:14px;background:#E3F1EE;color:var(--katun-d);margin-top:30px}
+.done.on{display:block}
+@media(max-width:760px){.res{grid-template-columns:1fr}.opts{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top"><a href="index.html">Дыхание Алтая</a><small id="cnt"></small></div>
+<div class="bar"><i id="prog"></i></div>
+<main id="app" aria-live="polite"></main>
+<p class="credits">Фото, Wikimedia Commons: Victor Gleim, Ludvig14, Arseniy333, Maksim Teltsov, BeerFAAN, Dukvink, Discoverynn, SilvioMartin, Андрей Лойченко, Vyacheslav Argenberg, Горбунова М.С., Alexandr frolov, Vitold Muratov, ᴀɴᴅʏ ᴏɴᴇ. Лицензии:
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, <a href="https://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>. Изображения уменьшены и сжаты.</p>
+
+<script>
+var WEBHOOK_URL=''; // адрес вебхука n8n
+
+/* иконки: простые сцены на цветном фоне */
+function ic(bg,body){return '<svg viewBox="0 0 200 120" aria-hidden="true"><rect width="200" height="120" fill="'+bg+'"/>'+body+'</svg>'}
+var I={
+ silence:ic('#cfe4e0','<circle cx="100" cy="60" r="34" fill="none" stroke="#1E8C8E" stroke-width="3"/><circle cx="100" cy="60" r="20" fill="none" stroke="#1E8C8E" stroke-width="2" opacity=".6"/><circle cx="100" cy="60" r="6" fill="#1E8C8E"/>'),
+ view:ic('#dbe6ee','<circle cx="150" cy="30" r="12" fill="#D49A2A"/><path d="M0 100 L55 40 L90 78 L125 30 L200 100Z" fill="#5B7A86"/><path d="M125 30 L108 52 L125 46 L140 54Z" fill="#fff"/><rect y="100" width="200" height="20" fill="#1E8C8E"/>'),
+ move:ic('#e6e3d2','<path d="M10 100 Q60 70 100 78 T190 40" fill="none" stroke="#8a6a2b" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round"/><path d="M0 108 L60 70 L110 100 L150 60 L200 104 V120 H0Z" fill="#6d8a6a"/><circle cx="190" cy="40" r="7" fill="#D49A2A"/>'),
+ people:ic('#f0e2cc','<circle cx="70" cy="48" r="14" fill="#13262B"/><circle cx="130" cy="48" r="14" fill="#1E8C8E"/><path d="M42 100 Q70 62 98 100Z" fill="#13262B"/><path d="M102 100 Q130 62 158 100Z" fill="#1E8C8E"/><circle cx="100" cy="30" r="5" fill="#D49A2A"/>'),
+ slow:ic('#d9e8dc','<path d="M0 84 Q50 64 100 84 T200 84 V120 H0Z" fill="#7da58a"/><path d="M0 98 Q50 80 100 98 T200 98 V120 H0Z" fill="#1E8C8E"/><circle cx="60" cy="40" r="14" fill="#D49A2A"/>'),
+ mid:ic('#dbe6e4','<path d="M0 104 L50 60 L90 90 L140 44 L200 100V120H0Z" fill="#5f8f99"/><path d="M0 112 L70 84 L130 106 L200 80V120H0Z" fill="#2b5a63"/>'),
+ fast:ic('#e8dccc','<path d="M0 110 L45 56 L80 84 L118 30 L160 70 L200 38V120H0Z" fill="#8a6a2b"/><path d="M118 30 L104 50 L118 46 L130 52Z" fill="#fff"/><circle cx="170" cy="22" r="8" fill="#D49A2A"/>'),
+ banya:ic('#ecd9c3','<rect x="55" y="48" width="90" height="56" fill="#8a5a34"/><path d="M45 50 L100 18 L155 50Z" fill="#5a3a22"/><rect x="88" y="68" width="24" height="36" fill="#2a1d16"/><path d="M165 40 q8 -12 0 -22 M178 44 q8 -12 0 -22" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>'),
+ photo:ic('#e0e4ee','<rect x="52" y="38" width="96" height="62" rx="10" fill="#13262B"/><rect x="82" y="30" width="36" height="14" rx="4" fill="#13262B"/><circle cx="100" cy="68" r="21" fill="#fff"/><circle cx="100" cy="68" r="14" fill="#1E8C8E"/>'),
+ lake:ic('#d3e6ea','<path d="M0 60 L40 30 L80 56 L120 22 L200 62V70H0Z" fill="#6f8f9a"/><rect y="70" width="200" height="50" fill="#1E8C8E"/><path d="M0 76 L40 96 L80 80 L120 100 L200 78" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>'),
+ food:ic('#f1e3c4','<circle cx="100" cy="64" r="34" fill="#fff"/><circle cx="100" cy="64" r="24" fill="#D49A2A"/><path d="M50 40 v48 M44 40 v16 a6 6 0 0012 0 V40 M156 40 q-8 20 0 48" stroke="#13262B" stroke-width="4" fill="none" stroke-linecap="round"/>'),
+ one:ic('#dfe8e4','<circle cx="100" cy="46" r="15" fill="#13262B"/><path d="M70 104 Q100 58 130 104Z" fill="#13262B"/>'),
+ two:ic('#f0e2cc','<circle cx="76" cy="48" r="13" fill="#13262B"/><circle cx="124" cy="48" r="13" fill="#D49A2A"/><path d="M52 104 Q76 64 100 104Z" fill="#13262B"/><path d="M100 104 Q124 64 148 104Z" fill="#D49A2A"/>'),
+ friends:ic('#d9ebe6','<circle cx="55" cy="52" r="11" fill="#13262B"/><circle cx="100" cy="46" r="12" fill="#1E8C8E"/><circle cx="145" cy="52" r="11" fill="#D49A2A"/><path d="M36 104 Q55 70 74 104Z" fill="#13262B"/><path d="M80 104 Q100 64 120 104Z" fill="#1E8C8E"/><path d="M126 104 Q145 70 164 104Z" fill="#D49A2A"/>'),
+ summer:ic('#dcecdd','<circle cx="100" cy="52" r="20" fill="#D49A2A"/><g stroke="#D49A2A" stroke-width="4" stroke-linecap="round"><path d="M100 14v10M100 80v10M62 52h10M128 52h10M73 25l7 7M120 72l7 7M127 25l-7 7M80 72l-7 7"/></g><rect y="100" width="200" height="20" fill="#7da58a"/>'),
+ autumn:ic('#f1ddb8','<path d="M100 30 L128 74 H72Z" fill="#D49A2A"/><path d="M100 50 L136 98 H64Z" fill="#c07a1c"/><rect x="95" y="98" width="10" height="16" fill="#5a3a22"/><circle cx="160" cy="28" r="6" fill="#fff" opacity=".7"/>'),
+ later:ic('#e4e8ea','<circle cx="100" cy="60" r="32" fill="none" stroke="#5B6B69" stroke-width="3"/><path d="M100 40 V62 L116 72" stroke="#5B6B69" stroke-width="3" fill="none" stroke-linecap="round"/>')
+};
+
+/* вопросы; w = вклад в программы: calm (покой), lakes (озёра и тропы), gold (кадры и золотая осень) */
+var Q=[
+ {t:'Чего вы ждёте от поездки?',h:'Выберите главное',o:[
+  {n:'Тишины и отдыха',s:'Выключить уведомления',i:'silence',p:'img/katun.jpg',w:{calm:3}},
+  {n:'Красивых видов',s:'Горы, озёра, простор',i:'view',p:'img/hero.jpg',w:{lakes:2,gold:1}},
+  {n:'Движения',s:'Тропы и свежий воздух',i:'move',p:'img/trek.jpg',w:{lakes:3}},
+  {n:'Новых людей',s:'Тёплая компания',i:'people',p:'img/q-people.jpg',w:{calm:1,gold:1,lakes:1}}]},
+ {t:'Какой темп вам по душе?',h:'Тур в любом случае лёгкий',o:[
+  {n:'Спокойный',s:'С запасом на отдых',i:'slow',p:'img/stay.jpg',w:{calm:3}},
+  {n:'Умеренный',s:'Прогулки по 3–4 часа',i:'mid',p:'img/chuya.jpg',w:{lakes:2,gold:1}},
+  {n:'Активный',s:'Чуть больше дорог и троп',i:'fast',p:'img/q-active.jpg',w:{lakes:3}}]},
+ {t:'Что для вас в поездке обязательно?',h:'Выберите одно',o:[
+  {n:'Баня и травяной чай',s:'Тепло и разговоры',i:'banya',p:'img/banya.jpg',w:{calm:3}},
+  {n:'Красивые кадры',s:'Фото на память',i:'photo',p:'img/autumn.jpg',w:{gold:3}},
+  {n:'Озёра и тропы',s:'Выйти к воде',i:'lake',p:'img/lake.jpg',w:{lakes:3}},
+  {n:'Местная кухня',s:'Мёд, травы, рыба',i:'food',p:'img/q-food.jpg',w:{calm:2,gold:1}}]},
+ {t:'С кем вы поедете?',h:'Группа всё равно небольшая',o:[
+  {n:'Один',s:'Познакомлюсь в пути',i:'one',p:'img/q-solo.jpg',w:{calm:1}},
+  {n:'Вдвоём',s:'Партнёр или друг',i:'two',p:'img/q-couple.jpg',w:{gold:1}},
+  {n:'С компанией',s:'Друзья или коллеги',i:'friends',p:'img/q-friends.jpg',w:{lakes:1}}]},
+ {t:'Когда хотите поехать?',h:'Подберём ближайшие даты',o:[
+  {n:'Июнь–август',s:'Тёплое лето',i:'summer',p:'img/q-summer.jpg',w:{lakes:2}},
+  {n:'Сентябрь–октябрь',s:'Золотая осень',i:'autumn',p:'img/autumn.jpg',w:{gold:3}},
+  {n:'Пока не знаю',s:'Подскажите лучшее время',i:'later',p:'img/lake.jpg',w:{calm:1}}]}
+];
+
+/* программы-результаты */
+var R={
+ calm:{name:'Алтай для отдыха',img:'img/stay.jpg',lead:'Для вас — неспешная неделя с большим запасом тишины: река, баня на дровах и разговоры за травяным чаем.',
+  pts:['Чемал и берег Катуни: прогулки без спешки','Баня на дровах дважды за поездку','Свободный день без плана','Местная кухня и чай из алтайских трав']},
+ lakes:{name:'Алтай для тех, кто любит тропы',img:'img/trek.jpg',lead:'Для вас — недели с выходами к горным озёрам и дорогой через Чуйский тракт. Тропы лёгкие, но каждый день новая картинка.',
+  pts:['Лёгкий трек 8–10 км к горному озеру','Дорога по Чуйскому тракту и Курайской степи','Обед у воды и вечер в бане','Гид и фотограф на всём маршруте']},
+ gold:{name:'Золотой Алтай',img:'img/autumn.jpg',lead:'Для вас — поездка за светом и кадрами: золотая лиственница, отражения в озёрах и фотограф, который снимает группу.',
+  pts:['Самые фотогеничные точки в лучшее время суток','Фотосъёмка группы и готовые кадры после тура','Лёгкие маршруты к озёрам и смотровым','Баня и ужин у костра']}
+};
+
+var a=[],step=0,app=document.getElementById('app'),prog=document.getElementById('prog'),cnt=document.getElementById('cnt'),done={};
+
+function show(){
+  prog.style.width=(step/(Q.length+1)*100)+'%';
+  if(step<Q.length){
+    var q=Q[step];
+    cnt.textContent='Вопрос '+(step+1)+' из '+Q.length;
+    app.innerHTML='<h1 class="q">'+q.t+'</h1><p class="hint">'+q.h+'</p><div class="opts">'+
+      q.o.map(function(o,k){return '<button class="opt" data-k="'+k+'"><div class="m">'+I[o.i]+'<img src="'+o.p+'" alt="" loading="lazy" onerror="this.remove()"></div><span>'+o.n+'<em>'+o.s+'</em></span></button>'}).join('')+'</div>'+
+      (step?'<button class="back">Назад</button>':'');
+    app.querySelectorAll('.opt').forEach(function(b){b.onclick=function(){a[step]=+b.dataset.k;step++;show();window.scrollTo(0,0)}});
+    var bk=app.querySelector('.back');if(bk)bk.onclick=function(){step--;show()};
+  }else result();
+}
+
+function result(){
+  var sc={calm:0,lakes:0,gold:0};
+  a.forEach(function(k,i){var w=Q[i].o[k].w;for(var p in w)sc[p]+=w[p]});
+  var key=Object.keys(sc).sort(function(x,y){return sc[y]-sc[x]})[0], r=R[key];
+  done.key=key;cnt.textContent='Ваш результат';prog.style.width='100%';
+  app.innerHTML='<div class="res"><div class="pic" style="background-image:url('+r.img+')" role="img" aria-label="'+r.name+'"></div><div>'+
+    '<span class="tag">Подходит вам</span><h2>'+r.name+'</h2><p>'+r.lead+'</p><ul>'+r.pts.map(function(p){return '<li>'+p+'</li>'}).join('')+'</ul>'+
+    '<div class="pr">95 000 ₽<small>с человека, до 7 дней, группа 8–12 человек</small></div></div></div>'+
+    '<form id="f"><h3>Получите программу и даты</h3><p class="fine">Пришлём подробный маршрут и свободные места. Платить ничего не нужно.</p>'+
+    '<label>Ваше имя<input name="name" autocomplete="name" required></label>'+
+    '<label>Телефон или Telegram<input name="contact" autocomplete="tel" required></label>'+
+    '<button class="btn" type="submit">Получить программу</button><p class="fine">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p></form>'+
+    '<div class="done" id="ok" role="status">Спасибо! Программа «'+r.name+'» отправлена в работу, мы свяжемся с вами в течение дня.</div>'+
+    '<p style="margin-top:28px"><a href="index.html#program" style="color:var(--katun-d)">Посмотреть программу по дням на сайте</a></p>';
+  document.getElementById('f').onsubmit=function(e){
+    e.preventDefault();var f=e.target;
+    if(!f.name.value.trim()){f.name.focus();return}
+    if(!f.contact.value.trim()){f.contact.focus();return}
+    var data={name:f.name.value.trim(),contact:f.contact.value.trim(),program:r.name,
+      answers:a.map(function(k,i){return {q:Q[i].t,a:Q[i].o[k].n}}),source:'quiz'};
+    var ok=function(){f.style.display='none';document.getElementById('ok').classList.add('on')};
+    if(!WEBHOOK_URL){ok();return}
+    fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+      .then(ok).catch(function(){alert('Не удалось отправить. Напишите нам в Telegram.')});
+  };
+}
+show();
+</script>
+</body>
+</html>
